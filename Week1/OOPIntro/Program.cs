@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace OOPIntro
 {
@@ -17,8 +18,13 @@ namespace OOPIntro
 
             Console.WriteLine(morley.HairColor);
 
-            Person j = new Person("Jason", "Irvin");
+            Student j = new Student("Jason", "Irvin");
             Console.WriteLine(j);
+
+            Course cSharpDecember = new Course("C#", new DateTime(2020, 11, 20), new DateTime(2020, 12, 23));
+
+            j.Courses.Add(cSharpDecember);
+            Console.WriteLine($"J has {j.Courses.Count} courses.");
 
             // this causes an issue because the implicit access level is private
             // morley.firstName = "Morley";
@@ -64,7 +70,7 @@ namespace OOPIntro
         // overriding the built-in method to get a string representation
         public override string ToString()
         {
-            return $"The person's name is {FirstName} {LastName} and has {HairColor} hair.";
+            return $"The person's name is {FullName} and has {HairColor} hair.";
         }
 
         // this is a setter method (allows us to access private fields)
@@ -78,5 +84,39 @@ namespace OOPIntro
         // {
         //     return hairColor;
         // }
+    }
+
+    class Course
+    {
+        // properties that belong to the instances (objects)
+        public string Stack {get;}
+
+        public DateTime StartDate {get;}
+
+        public DateTime EndDate {get;}
+
+        public Course(string stack, DateTime startDate, DateTime endDate)
+        {
+            // def __init__(self, stack, start_date, end_date):
+            //     self.stack = stack
+            this.Stack = stack;
+            this.StartDate = startDate;
+            this.EndDate = endDate;
+        }
+    }
+
+    // in Python
+    // class Student(Person):
+    // Inheritance (from the Person class)
+    class Student : Person
+    {
+        public List<Course> Courses {get;set;}
+
+        // super().__init__(first, last)
+        // 
+        public Student(string first, string last) : base(first, last)
+        {
+            Courses = new List<Course>();
+        }
     }
 }
