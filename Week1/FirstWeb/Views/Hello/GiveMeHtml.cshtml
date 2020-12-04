@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First .NET Template</title>
+</head>
+<body>
+  <h1>First .NET Template</h1>
+  <h2>My name is @ViewBag.MyName</h2>
+  <ul>
+    @{
+      @* this won't work due to the type mismatch *@
+      @* var result = ViewBag.MyName / 1; *@
+
+      @* just experimenting here; this isn't how you'd do it *@
+      @* @foreach (var viewBagItem in ViewContext.ViewData)
+      {
+        @viewBagItem.Value
+      } *@
+
+      string[] names = new string[] {
+        "Steven",
+        "Jason",
+        "Gary",
+        "Stephen"
+      };
+
+      foreach(var name in names)
+      {
+        <li>@name</li>
+      }
+    }
+  </ul>
+  <div>
+    @foreach(var name in names)
+    {
+      <p>@name</p>
+    }
+  </div>
+</body>
+</html>
