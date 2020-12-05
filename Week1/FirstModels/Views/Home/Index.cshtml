@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@* @using FirstModels.Models *@
+@model Business
+<div class="text-center">
+    <h1 class="display-4">Business Page</h1>
+    <p>Name: @Model.Name</p>
+    <p>NumEmployees: @Model.NumEmployees</p>
+    <p>City: @Model.City</p>
+    <p>State: @Model.State</p>
+</div>

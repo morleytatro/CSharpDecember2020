@@ -1,0 +1,24 @@
+<h1>New Restaurant Page</h1>
+
+@model Business
+<form asp-action="CreateRestaurant" method="post">
+  <div>
+    <label>Name</label>
+    <input type="text" name="Name">
+    <span asp-validation-for="Name"></span>
+  </div>
+  <div>
+    <label>Number of Employees</label>
+    <input type="number" name="NumEmployees">
+    <span asp-validation-for="NumEmployees"></span>
+  </div>
+  <div>
+    <label>City</label>
+    <input type="text" name="City">
+  </div>
+  <div>
+    <label>State</label>
+    <input type="text" name="State">
+  </div>
+  <button>Submit</button>
+</form>
