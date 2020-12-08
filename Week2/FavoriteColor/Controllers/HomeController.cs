@@ -19,7 +19,7 @@ namespace FavoriteColor.Controllers
         {
             HttpContext.Session.SetString("FavoriteColor", favoriteColor);
 
-            return RedirectToAction(nameof(this.Index));
+            return RedirectToAction("Index");
             // return View("SubmitFavoriteColor", favoriteColor);
         }
 
