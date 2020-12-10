@@ -1,0 +1,76 @@
+@* These are all in the ViewBag *@
+@* WomensLeagues *@
+@* HockeyLeagues *@
+@* ... *@
+@* CooperNotJoshua *@
+<div class="card">
+    <div class="card-header bg-dark text-light">Level 1</div>
+    <div class="card-body">
+        <p>Using the SportsORM, complete all the following queries and show their results on Level1.cshtml.</p>
+        <ol>
+            <li>...all womens' leagues</li>
+            <li>...all leagues where sport is any type of hockey</li>
+            <li>...all leagues where sport is something OTHER THAN football</li>
+            <li>...all leagues that call themselves "conferences"</li>
+            <li>...all leagues in the Atlantic region</li>
+            <li>...all teams based in Dallas</li>
+            <li>...all teams named the Raptors</li>
+            <li>...all teams whose location includes "City"</li>
+            <li>...all teams whose names begin with "T"</li>
+            <li>...all teams, ordered alphabetically by location</li>
+            <li>...all teams, ordered by team name in reverse alphabetical order</li>
+            <li>...every player with last name "Cooper"</li>
+            <li>...every player with first name "Joshua"</li>
+            <li>...every player with last name "Cooper" EXCEPT those with "Joshua" as the first name</li>
+            <li>...all players with first name "Alexander" OR first name "Wyatt"</li>
+        </ol>
+
+        <h2>Women's Leagues</h2>
+        <ul>
+          @foreach(var league in ViewBag.WomensLeagues)
+          {
+            <li>@league.Name</li>
+          }
+        </ul>
+
+        <h2>Hockey Leagues</h2>
+        <ul>
+          @foreach(var league in ViewBag.HockeyLeagues)
+          {
+            <li>@league.Name</li>
+          }
+        </ul>
+
+        <h2>Dallas Teams</h2>
+        <ul>
+          @foreach(var team in ViewBag.DallasTeams)
+          {
+            <li>@team.Location @team.TeamName</li>
+          }
+        </ul>
+
+        <h2>Sorted by Location</h2>
+        <ul>
+          @foreach(var team in ViewBag.SortedByLocation)
+          {
+            <li>@team.Location @team.TeamName</li>
+          }
+        </ul>
+
+        <h2>Sorted by Team Name Descending</h2>
+        <ul>
+          @foreach(var team in ViewBag.ReverseTeamName)
+          {
+            <li>@team.Location @team.TeamName</li>
+          }
+        </ul>
+
+        <h2>Coopers not Joshua</h2>
+        <ul>
+          @foreach(var player in ViewBag.CooperNotJoshua)
+          {
+            <li>@player.FirstName @player.LastName</li>
+          }
+        </ul>
+    </div>
+</div>
