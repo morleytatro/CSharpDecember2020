@@ -1,8 +1,37 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "All Students";
 }
 
+@* ViewBag has AllStudents *@
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">All Students</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Favorite Number</th>
+          <th>Created At</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach(var student in ViewBag.AllStudents)
+        {
+          <tr>
+            <td>@student.FirstName @student.LastName</td>
+            <td>@student.FavoriteNumber</td>
+            <td>@student.CreatedAt.ToString()</td>
+            <td>
+              <a asp-action="EditStudentPage" asp-route-id="@student.StudentId">Edit</a>
+              <form asp-action="DeleteStudent" asp-route-id="@student.StudentId">
+                <button>Delete</button>
+              </form>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+  <a asp-action="NewStudentPage">Add a Student</a>
 </div>
