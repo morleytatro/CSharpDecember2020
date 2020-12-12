@@ -11,6 +11,6 @@ namespace FirstDB.Models
         public DbSet<Student> Students { get; set; }
 
         // if other models, add them as well
-        // public DbSet<Course> Courses {get;set;}
+        public DbSet<Book> Books {get;set;}
     }
 }

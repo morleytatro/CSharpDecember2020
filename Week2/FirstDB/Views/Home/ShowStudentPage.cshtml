@@ -1,0 +1,46 @@
+@* ViewBag.Student is available *@
+
+@{
+  ViewData["Title"] = "Single Student";
+  var student = ViewBag.Student;
+}
+
+<h1 class="heading">@student.FirstName @student.LastName</h1>
+
+<p>Email: @student.Email</p>
+<p>Favorite Number: @student.FavoriteNumber</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach(var book in student.Books)
+    {
+      <tr>
+        <td>@book.Title</td>
+        <td>@book.Author</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+
+@model Book
+<form asp-action="CreateBook">
+  <input type="hidden" asp-for="StudentId" value="@student.StudentId">
+  <div class="form-group">
+    <label asp-for="Title"></label>
+    <input asp-for="Title" class="form-control">
+    <span asp-validation-for="Title" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="Author"></label>
+    <input asp-for="Author" class="form-control">
+    <span asp-validation-for="Author" class="text-danger"></span>
+  </div>
+  <button>Submit</button>
+</form>

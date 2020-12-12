@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using FirstDB.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FirstDB.Controllers
 {
@@ -101,6 +102,44 @@ namespace FirstDB.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        [HttpGet("students/{id}")]
+        public IActionResult ShowStudentPage(int id)
+        {
+            ViewBag.Student = _context
+                .Students
+                // very important if we want relational data
+                // for individual objects
+                // gets the books for each student
+                .Include(stud => stud.Books)
+                .First(stud => stud.StudentId == id);
+
+            return View();
+        }
+
+        [HttpPost("books")]
+        public IActionResult CreateBook(Book bookToCreate)
+        {
+            if(!ModelState.IsValid)
+            {
+                // validations weren't met!
+                // return ShowStudentPage(bookToCreate.StudentId);
+                ViewBag.Student = _context
+                    .Students
+                    .Include(stud => stud.Books)
+                    .First(stud => stud.StudentId == bookToCreate.StudentId);
+
+                // gives the previous input values to the view
+                return View("ShowStudentPage", bookToCreate);
+            }
+
+            // like Book.objects.create()
+            _context.Add(bookToCreate);
+            _context.SaveChanges();
+
+            // return redirect() in Python
+            return Redirect($"/students/{bookToCreate.StudentId}");
         }
 
         public IActionResult Privacy()

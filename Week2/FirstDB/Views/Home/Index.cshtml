@@ -19,7 +19,7 @@
         @foreach(var student in ViewBag.AllStudents)
         {
           <tr>
-            <td>@student.FirstName @student.LastName</td>
+            <td><a asp-action="ShowStudentPage" asp-route-id="@student.StudentId">@student.FirstName @student.LastName</a></td>
             <td>@student.FavoriteNumber</td>
             <td>@student.CreatedAt.ToString()</td>
             <td>

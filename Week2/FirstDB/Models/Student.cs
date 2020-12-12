@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace FirstDB.Models
@@ -19,6 +20,9 @@ namespace FirstDB.Models
 
         [Display(Name="Favorite Number")]
         public int FavoriteNumber {get;set;}
+
+        public List<Book> Books {get;set;}
+        // will allow us to reference steven.Books
 
         public DateTime CreatedAt {get;set;} = DateTime.Now;
 
